@@ -1,7 +1,7 @@
 import * as S from './styles';
 import Button from '../../../components/Button';
 import Tag from '../../../components/Tag';
-import { WaitingUser } from '@types/waiting';
+import { savedWaitingUser } from 'types/waiting';
 
 const Card: React.FC<savedWaitingUser> = ({
   order,

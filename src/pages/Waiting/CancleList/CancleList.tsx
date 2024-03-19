@@ -5,7 +5,7 @@ const CancleList = () => {
   const waitingList = [
     {
       waitingNumber: 37,
-      total: 4,
+      totalPerson: 4,
       babyChair: 1,
       kidsUtensils: 2,
       phoneNumber: '010-1234-5678',
@@ -16,10 +16,11 @@ const CancleList = () => {
       isServiceUsed: true,
       remainingCalls: 2,
       cancelReason: 1,
+      waitingId: 'dsdfw',
     },
     {
       waitingNumber: 38,
-      total: 2,
+      totalPerson: 2,
       babyChair: 0,
       kidsUtensils: 0,
       phoneNumber: '010-1234-9876',
@@ -29,10 +30,11 @@ const CancleList = () => {
       isServiceUsed: false,
       remainingCalls: 1,
       cancelReason: 1,
+      waitingId: 'assdfsdfdasd2',
     },
     {
       waitingNumber: 39,
-      total: 4,
+      totalPerson: 4,
       babyChair: 0,
       kidsUtensils: 1,
       phoneNumber: '010-5678-9876',
@@ -42,6 +44,7 @@ const CancleList = () => {
       isServiceUsed: undefined,
       remainingCalls: 0,
       cancelReason: 2,
+      waitingId: 'asdasd2',
     },
   ];
 
@@ -49,7 +52,7 @@ const CancleList = () => {
     <Container>
       {waitingList.reverse().map((completeWaiting, index) => (
         <Card
-          key={completeWaiting.waitingNumber}
+          key={completeWaiting.waitingId}
           order={index + 1}
           {...completeWaiting}
         />

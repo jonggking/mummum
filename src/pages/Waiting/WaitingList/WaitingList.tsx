@@ -5,46 +5,53 @@ const WaitingList = () => {
   const waitingList = [
     {
       waitingNumber: 37,
-      total: 4,
+      totalPerson: 4,
       babyChair: 1,
       kidsUtensils: 2,
       phoneNumber: '010-1234-5678',
       time: '10:10:11',
+      waitingEndTime: '10:25:13',
+
       service: '트러플스트링',
-      isServiceUsed: false,
-      remainingCalls: 0,
-      isDeferred: true,
+      isServiceUsed: true,
+      remainingCalls: 2,
+      cancelReason: 1,
+      waitingId: 'dsdfw',
     },
     {
       waitingNumber: 38,
-      total: 2,
+      totalPerson: 2,
       babyChair: 0,
       kidsUtensils: 0,
       phoneNumber: '010-1234-9876',
       time: '10:15:13',
+      waitingEndTime: '10:35:13',
       service: '음료',
       isServiceUsed: false,
       remainingCalls: 1,
-      isDeferred: false,
+      cancelReason: 1,
+      waitingId: 'assdfsdfdasd2',
     },
     {
       waitingNumber: 39,
-      total: 4,
+      totalPerson: 4,
       babyChair: 0,
       kidsUtensils: 1,
       phoneNumber: '010-5678-9876',
       time: '10:15:13',
+      waitingEndTime: '10:32:23',
       service: null,
-      isServiceUsed: false,
-      remainingCalls: 2,
-      isDeferred: false,
+      isServiceUsed: undefined,
+      remainingCalls: 0,
+      cancelReason: 2,
+      waitingId: 'asdasd2',
     },
   ];
   return (
     <Container>
       {waitingList.map((waitingTeam, index) => (
         <Card
-          key={waitingTeam.waitingNumber}
+          key={waitingTeam.waitingId}
           order={index + 1}
           {...waitingTeam}
         />

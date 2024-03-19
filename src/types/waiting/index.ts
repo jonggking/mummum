@@ -22,5 +22,5 @@ export type WaitingUser = WaitingUserInput &
 
 export type savedWaitingUser = WaitingUser & {
   order: number;
-  isDeferred: number | null;
+  isDeferred?: number | null;
 };

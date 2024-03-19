@@ -1,21 +1,21 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import * as S from './styles';
 
 const NoticeModalContent = () => {
-  const [noticeText, setNoticeText] = useState(
-    '- 품절 메뉴: 멘타이코 파스타\n- 단체 손님의 경우에는 매장에 직접 문의해주세요.\n'
-  );
-  const handleTextChange = (e) => {
-    setNoticeText(e.target.value);
-  };
+  // const [noticeText, setNoticeText] = useState(
+  //   '- 품절 메뉴: 멘타이코 파스타\n- 단체 손님의 경우에는 매장에 직접 문의해주세요.\n'
+  // );
+  // const handleTextChange = (e: ) => {
+  //   setNoticeText(e.target.value);
+  // };
 
-  const handleSave = () => {
-    const formattedNoticeText = noticeText.replace(/\n/g, '<br>');
-  };
+  // const handleSave = () => {
+  //   const formattedNoticeText = noticeText.replace(/\n/g, '<br>');
+  // };
 
   return (
     <S.Container>
-      <S.TextArea value={noticeText} onChange={handleTextChange} />
+      <S.TextArea />
       <S.FixedNotice>
         - 대기 손님을 위해 대기 시간에 따라 서비스를 제공해드려요.
         <br />

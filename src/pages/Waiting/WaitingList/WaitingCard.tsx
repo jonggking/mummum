@@ -1,8 +1,7 @@
 import * as S from './styles';
 import Button from '../../../components/Button';
 import Tag from '../../../components/Tag';
-import { savedWaitingUser } from '@types/waiting';
-import { CheckmarkSharp, CloseSharp } from 'react-ionicons';
+import { savedWaitingUser } from 'types/waiting';
 
 const Card: React.FC<savedWaitingUser> = ({
   order,

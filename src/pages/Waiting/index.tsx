@@ -44,9 +44,9 @@ const modalsData = [
 const Waiting = () => {
   const activeTab = useWaitingStore((state) => state.activeTab);
   const setActiveTab = useWaitingStore((state) => state.setActiveTab);
-  const [selectedModal, setSelectedModal] = useState(null);
+  const [selectedModal, setSelectedModal] = useState<number | null>(null);
 
-  const openModal = (index) => {
+  const openModal = (index: number) => {
     setSelectedModal(index);
   };
 

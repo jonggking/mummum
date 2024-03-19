@@ -5,7 +5,7 @@ const CompleteList = () => {
   const waitingList = [
     {
       waitingNumber: 37,
-      total: 4,
+      totalPerson: 4,
       babyChair: 1,
       kidsUtensils: 2,
       phoneNumber: '010-1234-5678',
@@ -14,11 +14,13 @@ const CompleteList = () => {
 
       service: '트러플스트링',
       isServiceUsed: true,
-      remainingCalls: 1,
+      remainingCalls: 2,
+      cancelReason: 1,
+      waitingId: 'dsdfw',
     },
     {
       waitingNumber: 38,
-      total: 2,
+      totalPerson: 2,
       babyChair: 0,
       kidsUtensils: 0,
       phoneNumber: '010-1234-9876',
@@ -27,10 +29,12 @@ const CompleteList = () => {
       service: '음료',
       isServiceUsed: false,
       remainingCalls: 1,
+      cancelReason: 1,
+      waitingId: 'assdfsdfdasd2',
     },
     {
       waitingNumber: 39,
-      total: 4,
+      totalPerson: 4,
       babyChair: 0,
       kidsUtensils: 1,
       phoneNumber: '010-5678-9876',
@@ -38,7 +42,9 @@ const CompleteList = () => {
       waitingEndTime: '10:32:23',
       service: null,
       isServiceUsed: undefined,
-      remainingCalls: 2,
+      remainingCalls: 0,
+      cancelReason: 2,
+      waitingId: 'asdasd2',
     },
   ];
 
@@ -46,7 +52,7 @@ const CompleteList = () => {
     <Container>
       {waitingList.reverse().map((completeWaiting, index) => (
         <Card
-          key={completeWaiting.waitingNumber}
+          key={completeWaiting.waitingId}
           order={index + 1}
           {...completeWaiting}
         />

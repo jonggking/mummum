@@ -29,7 +29,7 @@ export const Title = styled.span`
   top: 25px;
   left: -15px; */
 
-  ${({ theme }) => theme.typo['body-0-b']};
+  ${({ theme }) => theme.typo['body-0-b']}
   /* border-radius: 30px; */
   /* background-color: ${({ theme }) => theme.colors.BLUE[300]}; */
   /* color: ${({ theme }) => theme.colors.WHITE}; */
