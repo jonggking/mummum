@@ -64,9 +64,9 @@ const Waiting = () => {
     getAllWaitingList();
   }, [selectedDate]);
 
-  // const openModal = (index: number) => {
-  //   setSelectedModal(index);
-  // };
+  const openModal = (index: number) => {
+    setSelectedModal(index);
+  };
 
   const closeModal = () => {
     setSelectedModal(null);
@@ -109,14 +109,18 @@ const Waiting = () => {
             {modalsData.map((modal, index) => (
               <S.StyledIcon
                 key={index}
-                // onClick={() => openModal(index)}
-                style={{ cursor: 'not-allowed' }}
+                onClick={() => {
+                  if (index === 0) {
+                    openModal(index);
+                  }
+                }}
+                style={{ cursor: index === 0 ? 'pointer' : 'not-allowed' }}
               >
                 {modal.icon}
                 <S.Tooltip>
                   {modal.title}
                   <br />
-                  {'아직 기능 안됨'}
+                  {index === 0 ? '' : '아직 기능 안됨'}
                 </S.Tooltip>
               </S.StyledIcon>
             ))}

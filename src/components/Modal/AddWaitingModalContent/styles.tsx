@@ -18,13 +18,23 @@ export const Label = styled.span`
   ${({ theme }) => theme.typo['body-1-r']};
 `;
 
-export const Input = styled.input`
+export const InputErrorBox = styled.div`
   flex: 2;
+`;
+
+export const Input = styled.input<{ error?: string }>`
+  width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid ${(props) => (props.error ? 'red' : 'black')};
   border-radius: 4px;
   outline: none;
   ${({ theme }) => theme.typo['body-1-r']};
+`;
+
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
 `;
 
 export const TextArea = styled.textarea`

@@ -8,17 +8,25 @@ import Button from '@components/Button';
 
 const AddWaitingModalContent: React.FC = () => {
   const [formData, setFormData] = useState<WaitingUserInput>({
-    personCount: 0,
+    personCount: 2,
     toddlerChairCount: 0,
     childrenTablewareCount: 0,
     phoneNumber: '010',
   });
   const [isSaveConfirmModalOpen, setIsSaveConfirmModalOpen] = useState(false);
+  const [phoneNumberError, setPhoneNumberError] = useState<string>('');
   const getAllWaitingList = useWaitingListStore(
     (state) => state.getAllWaitingList
   );
 
   const handleSubmit = async () => {
+    if (
+      formData.phoneNumber.length !== 11 ||
+      !/^\d+$/.test(formData.phoneNumber)
+    ) {
+      setPhoneNumberError('01012345678 형식으로 숫자만 입력하세요.');
+      return;
+    }
     try {
       const res = await post<WaitingUserInput>('/api/v1/waiting', {
         phone1: '010',
@@ -43,51 +51,70 @@ const AddWaitingModalContent: React.FC = () => {
       <S.Container onSubmit={(e) => e.preventDefault()}>
         <S.InputRow>
           <S.Label>전화번호</S.Label>
-          <S.Input
-            type='text'
-            placeholder='전화번호를 입력하세요'
-            value={formData.phoneNumber}
-            onChange={(e) =>
-              setFormData({ ...formData, phoneNumber: e.target.value })
-            }
-          />
+          <S.InputErrorBox>
+            <S.Input
+              type='text'
+              placeholder='전화번호를 입력하세요'
+              value={formData.phoneNumber}
+              onChange={(e) => {
+                setFormData({ ...formData, phoneNumber: e.target.value });
+                setPhoneNumberError('');
+              }}
+              error={phoneNumberError}
+            />
+            {phoneNumberError && (
+              <S.ErrorMessage>{phoneNumberError}</S.ErrorMessage>
+            )}
+          </S.InputErrorBox>
         </S.InputRow>
         <S.InputRow>
           <S.Label>총인원</S.Label>
-          <S.Input
-            type='number'
-            placeholder='총인원을 입력하세요'
-            value={formData.personCount}
-            onChange={(e) =>
-              setFormData({ ...formData, personCount: Number(e.target.value) })
-            }
-          />
+          <S.InputErrorBox>
+            <S.Input
+              type='number'
+              min={1}
+              placeholder='총인원을 입력하세요'
+              value={formData.personCount}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  personCount: Number(e.target.value),
+                })
+              }
+            />
+          </S.InputErrorBox>
         </S.InputRow>
         <S.InputRow>
           <S.Label>어린이식기</S.Label>
-          <S.Input
-            type='number'
-            value={formData.childrenTablewareCount}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                childrenTablewareCount: Number(e.target.value),
-              })
-            }
-          />
+          <S.InputErrorBox>
+            <S.Input
+              type='number'
+              min={0}
+              value={formData.childrenTablewareCount}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  childrenTablewareCount: Number(e.target.value),
+                })
+              }
+            />
+          </S.InputErrorBox>
         </S.InputRow>
         <S.InputRow>
           <S.Label>유아용그릇</S.Label>
-          <S.Input
-            type='number'
-            value={formData.toddlerChairCount}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                toddlerChairCount: Number(e.target.value),
-              })
-            }
-          />
+          <S.InputErrorBox>
+            <S.Input
+              type='number'
+              min={0}
+              value={formData.toddlerChairCount}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  toddlerChairCount: Number(e.target.value),
+                })
+              }
+            />
+          </S.InputErrorBox>
         </S.InputRow>
         <S.Footer>
           <Button text='저장하기' onClick={handleSubmit} />

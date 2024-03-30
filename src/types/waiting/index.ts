@@ -1,7 +1,7 @@
 export type WaitingUserInput = {
   personCount: number;
-  toddlerChairCount?: number;
-  childrenTablewareCount?: number;
+  toddlerChairCount: number;
+  childrenTablewareCount: number;
   phoneNumber: string;
 };
 
