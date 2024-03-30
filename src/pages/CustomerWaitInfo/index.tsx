@@ -134,8 +134,7 @@ const CustomerWaitInfo = () => {
           <S.Title>유의사항</S.Title>
           <S.Content>
             <li>
-              호출 알림톡을 받고 5분 동안 미입장 시 재호출 알림톡이 한 번 더
-              발송되며, 재호출 5분 이내 미입장시 자동 취소됩니다.
+              호출 알림톡을 받고 5분 동안 미입장 시 자동 취소됩니다.
             </li>
             <li>테이블 상황에 따라 2인 대기팀이 선입장할 수 있습니다.</li>
             <li>
@@ -147,11 +146,11 @@ const CustomerWaitInfo = () => {
       </S.Inner>
       <S.Buttons>
         <button onClick={() => setIsCancelModalOpen(true)}>웨이팅 취소</button>
-        <button
+        {/* <button
         // onClick={() => setIsDeferredOrderModalOpen(true)}
         >
           맨 뒤로 미루기
-        </button>
+        </button> */}
       </S.Buttons>
       <YesNoModal
         title='웨이팅 취소'

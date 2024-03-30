@@ -198,7 +198,8 @@ export const Buttons = styled.div`
     align-items: center;
     justify-content: center;
     height: 4rem;
-    width: 50%;
+    width: 100%;
+    /* width: 50%; */
     border: none;
     outline: none;
     ${({ theme }) => theme.typo['body-2-b']};
@@ -213,11 +214,11 @@ export const Buttons = styled.div`
       background-color: ${({ theme }) => theme.colors.BLUE[900]};
     }
 
-    &:first-child {
+    /* &:first-child {
       background-color: white;
       border: 1px solid ${({ theme }) => theme.colors.BLUE[800]};
       color: black;
-    }
+    } */
   }
 `;
 
