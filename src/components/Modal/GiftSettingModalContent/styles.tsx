@@ -22,15 +22,15 @@ export const GiftItem = styled.li`
   gap: 8px;
 
   span {
-    ${({ theme }) => theme.typo['body-0-r']};
+    ${({ theme }) => theme.typo['body-1-r']};
   }
 
   span > input {
-    ${({ theme }) => theme.typo['body-0-r']};
+    ${({ theme }) => theme.typo['body-1-r']};
     width: 70px;
   }
   input {
-    ${({ theme }) => theme.typo['body-0-r']};
+    ${({ theme }) => theme.typo['body-1-r']};
     width: 180px;
   }
 `;

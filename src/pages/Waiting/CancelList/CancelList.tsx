@@ -1,17 +1,21 @@
-import Card from './WaitingCard';
+import Card from './CancelCard';
 import styled from 'styled-components';
 import { CmsWaitingData } from 'types/waiting';
 
-const WaitingList = ({ datas }: { datas: CmsWaitingData[] }) => {
+const CancelList = ({ datas }: { datas: CmsWaitingData[] }) => {
   return (
     <Container>
-      {datas.map((waitingTeam, index) => (
-        <Card key={waitingTeam.waitingId} order={index + 1} {...waitingTeam} />
+      {datas.reverse().map((completeWaiting, index) => (
+        <Card
+          key={completeWaiting.waitingId}
+          order={index + 1}
+          {...completeWaiting}
+        />
       ))}
     </Container>
   );
 };
-export default WaitingList;
+export default CancelList;
 
 const Container = styled.div`
   display: flex;

@@ -1,15 +1,14 @@
 import * as S from './styles';
 import Button from '../../../components/Button';
-// import Tag from '../../../components/Tag';
 import { CmsWaitingData } from 'types/waiting';
 import formatPhoneNumber from '@utils/formatPhoneNumber';
 import getTimeFromCreatedAt from '@utils/getTimeFromCreatedAt';
 
-type CompletedProps = CmsWaitingData & {
+type CancelProps = CmsWaitingData & {
   order: number;
 };
 
-const Card: React.FC<CompletedProps> = ({
+const Card: React.FC<CancelProps> = ({
   order,
   waitingNumber,
   personCount,
@@ -17,11 +16,9 @@ const Card: React.FC<CompletedProps> = ({
   childrenTablewareCount,
   phoneNumber,
   createdAt,
-  waitingTimeMinute,
-  // service,
-  // isServiceUsed,
   callCount,
-  callList,
+  waitingTimeMinute,
+  // cancelReason,
 }) => {
   const time = getTimeFromCreatedAt(createdAt);
   const formattedPhoneNumber = formatPhoneNumber(phoneNumber);
@@ -53,28 +50,17 @@ const Card: React.FC<CompletedProps> = ({
             <S.CallIcon color='gray' /> {formattedPhoneNumber}
           </S.Phone>
           <S.Time>
-            <S.TimeIcon color='gray' /> {time} ~
-            {callList && getTimeFromCreatedAt(callList[0])}
-            <S.RedText>({waitingTimeMinute}분 대기)</S.RedText>
+            <S.TimeIcon color='gray' /> {time} ~ {'끝나는시간'}
+            <S.totalWaitingTime>
+              ({waitingTimeMinute}분 대기)
+            </S.totalWaitingTime>
           </S.Time>
-          {/* {service !== null && (
-            <S.Service>
-              <S.ServiceIcon color='gray' />
-              <S.ServiceName>{service}</S.ServiceName>
-              {isServiceUsed && <Tag title={'사용완료'} />}
-            </S.Service>
-          )} */}
+          <S.Cancel>
+            {/* {cancelReason === 1 ? ' 고객취소' : ' 자동취소 (호출 미응답)'} */}
+          </S.Cancel>
         </div>
       </S.Information>
       <S.ButtonContainer>
-        {/* {service !== null && (
-          <Button
-            text='서비스 사용'
-            color='YELLOW'
-            isLoading={false}
-            disabled={isServiceUsed}
-          />
-        )} */}
         <Button
           text={`호출 (${callCount}/1)`}
           color='BLUE'

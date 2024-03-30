@@ -31,6 +31,7 @@ export const Menu = styled.div`
 
 export const Title = styled.div`
   ${({ theme }) => theme.typo['heading-1']};
+  cursor: pointer;
 `;
 
 export const IconContainer = styled.div`

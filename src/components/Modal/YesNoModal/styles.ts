@@ -16,8 +16,6 @@ export const ModalContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 680px;
-  min-height: 560px;
   border-radius: 12px;
   background-color: white;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -26,11 +24,7 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${({ theme }) => theme.media.mobile} {
-    min-width: 240px;
-    max-width: 320px;
-    min-height: 240px;
-  }
+  min-width: 240px;
 `;
 
 export const Header = styled.div`
@@ -59,17 +53,8 @@ export const CloseIcon = styled(CloseOutline)`
 `;
 
 export const ContentContainer = styled.div`
-  ${({ theme }) => theme.typo['heading-2']};
   padding: 30px 40px;
-  max-height: 70vh;
-  overflow-y: auto;
-  flex-grow: 1;
-  position: relative;
-
-  ${({ theme }) => theme.media.mobile} {
-    padding: 30px;
-    ${({ theme }) => theme.typo['body-2-m']};
-  }
+  ${({ theme }) => theme.typo['body-2-m']}
 `;
 
 export const Footer = styled.div`

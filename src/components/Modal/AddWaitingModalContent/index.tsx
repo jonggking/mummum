@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import { post } from '@lib/axios';
+import { useWaitingListStore } from '@store/waitingStore';
+import ConfirmModal from '@components/Modal/ConfirmModal';
 import { WaitingUserInput } from 'types/waiting';
 import * as S from './styles';
 import Button from '@components/Button';
 
 const AddWaitingModalContent: React.FC = () => {
   const [formData, setFormData] = useState<WaitingUserInput>({
-    totalPerson: 0,
-    babyChair: 0,
-    kidsUtensils: 0,
+    personCount: 0,
+    toddlerChairCount: 0,
+    childrenTablewareCount: 0,
     phoneNumber: '010',
   });
+  const [isSaveConfirmModalOpen, setIsSaveConfirmModalOpen] = useState(false);
+  const getAllWaitingList = useWaitingListStore(
+    (state) => state.getAllWaitingList
+  );
 
   const handleSubmit = async () => {
     try {
@@ -18,10 +24,14 @@ const AddWaitingModalContent: React.FC = () => {
         phone1: '010',
         phone2: formData.phoneNumber.slice(3, 7),
         phone3: formData.phoneNumber.slice(7, 11),
-        personCount: formData.totalPerson,
-        toddlerChairCount: formData.kidsUtensils,
-        childrenTablewareCount: formData.babyChair,
+        personCount: formData.personCount,
+        toddlerChairCount: formData.childrenTablewareCount,
+        childrenTablewareCount: formData.toddlerChairCount,
       });
+      if (res.status === 200) {
+        setIsSaveConfirmModalOpen(true);
+        getAllWaitingList();
+      }
       return res.data;
     } catch (error) {
       console.log('저장오류');
@@ -47,9 +57,9 @@ const AddWaitingModalContent: React.FC = () => {
           <S.Input
             type='number'
             placeholder='총인원을 입력하세요'
-            value={formData.totalPerson}
+            value={formData.personCount}
             onChange={(e) =>
-              setFormData({ ...formData, totalPerson: Number(e.target.value) })
+              setFormData({ ...formData, personCount: Number(e.target.value) })
             }
           />
         </S.InputRow>
@@ -57,9 +67,12 @@ const AddWaitingModalContent: React.FC = () => {
           <S.Label>어린이식기</S.Label>
           <S.Input
             type='number'
-            value={formData.kidsUtensils}
+            value={formData.childrenTablewareCount}
             onChange={(e) =>
-              setFormData({ ...formData, kidsUtensils: Number(e.target.value) })
+              setFormData({
+                ...formData,
+                childrenTablewareCount: Number(e.target.value),
+              })
             }
           />
         </S.InputRow>
@@ -67,15 +80,33 @@ const AddWaitingModalContent: React.FC = () => {
           <S.Label>유아용그릇</S.Label>
           <S.Input
             type='number'
-            value={formData.babyChair}
+            value={formData.toddlerChairCount}
             onChange={(e) =>
-              setFormData({ ...formData, babyChair: Number(e.target.value) })
+              setFormData({
+                ...formData,
+                toddlerChairCount: Number(e.target.value),
+              })
             }
           />
         </S.InputRow>
         <S.Footer>
           <Button text='저장하기' onClick={handleSubmit} />
         </S.Footer>
+        <ConfirmModal
+          isOpen={isSaveConfirmModalOpen}
+          onConfirm={() => {
+            setIsSaveConfirmModalOpen(false);
+            setFormData({
+              personCount: 0,
+              toddlerChairCount: 0,
+              childrenTablewareCount: 0,
+              phoneNumber: '010',
+            });
+          }}
+          buttonName='확인'
+        >
+          웨이팅이 등록되었습니다.
+        </ConfirmModal>
       </S.Container>
     </>
   );

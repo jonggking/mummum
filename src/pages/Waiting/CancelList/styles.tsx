@@ -123,7 +123,7 @@ export const Tag = styled.div`
   ${({ theme }) => theme.typo['body-2-b']};
 `;
 
-export const Cancle = styled.div`
+export const Cancel = styled.div`
   ${({ theme }) => theme.typo['body-1-b']};
   color: ${({ theme }) => theme.colors.RED[700]};
   margin-left: 30px;

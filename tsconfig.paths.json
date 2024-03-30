@@ -9,7 +9,8 @@
       "@routes/*": ["./routes/*"],
       "@store/*": ["./store/*"],
       "@styles/*": ["./styles/*"],
-      "@types/*": ["./types/*"]
+      "@types/*": ["./types/*"],
+      "@utils/*": ["./utils/*"]
     }
   }
 }

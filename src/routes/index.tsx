@@ -8,7 +8,7 @@ const Router = () => (
     <Routes>
       <Route path='/' element={<Main />} />
       <Route path='/cms' element={<Waiting />} />
-      <Route path='/wait-info' element={<CustomerWaitInfo />} />
+      <Route path='/wait-info/:waitingId' element={<CustomerWaitInfo />} />
     </Routes>
   </BrowserRouter>
 );

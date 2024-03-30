@@ -15,7 +15,7 @@ export const InputRow = styled.div`
 export const Label = styled.span`
   flex: 1;
   margin-right: 10px;
-  ${({ theme }) => theme.typo['body-0-r']};
+  ${({ theme }) => theme.typo['body-1-r']};
 `;
 
 export const Input = styled.input`
@@ -24,7 +24,7 @@ export const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
-  ${({ theme }) => theme.typo['body-0-r']};
+  ${({ theme }) => theme.typo['body-1-r']};
 `;
 
 export const TextArea = styled.textarea`

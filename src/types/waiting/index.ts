@@ -1,7 +1,7 @@
 export type WaitingUserInput = {
-  totalPerson: number;
-  babyChair: number;
-  kidsUtensils: number;
+  personCount: number;
+  toddlerChairCount?: number;
+  childrenTablewareCount?: number;
   phoneNumber: string;
 };
 
@@ -24,3 +24,35 @@ export type savedWaitingUser = WaitingUser & {
   order: number;
   isDeferred?: number | null;
 };
+
+export type MobileWaitingData = AddWaitingUserResult &
+  WaitingUserInput & {
+    frontWaitingNumber: number;
+    waitingTimeMinute: number;
+    callList?: string[];
+    createdAt: string;
+  };
+
+export type CmsWaitingData = MobileWaitingData & {
+  waitingStatus: string;
+  callCount: number;
+};
+
+export type AllCmsWaitingDatas = {
+  WAITING?: CmsWaitingData[];
+  FINISHED?: CmsWaitingData[];
+  CANCELED?: CmsWaitingData[];
+};
+
+export interface WaitingTapStoreState {
+  activeTab: number;
+  setActiveTab: (index: number) => void;
+}
+
+export interface WaitingListStore {
+  selectedDate: string | null;
+  waitingDatas: AllCmsWaitingDatas | undefined;
+  setSelectedDate: (date: string) => void;
+  setSelectedToday: () => void;
+  getAllWaitingList: () => Promise<void>;
+}

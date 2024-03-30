@@ -1,11 +1,12 @@
 import React from 'react';
-import Button from '../Button';
+import Button from '../../Button';
 import * as S from './styles';
 
 interface ModalProps {
   title: string;
   isOpen: boolean;
   onClose: () => void;
+  onConfirm: () => void;
   children?: React.ReactNode;
   buttonName: string;
 }
@@ -14,6 +15,7 @@ const YesNoModal: React.FC<ModalProps> = ({
   title,
   isOpen,
   onClose,
+  onConfirm,
   children,
   buttonName,
 }) => {
@@ -32,7 +34,7 @@ const YesNoModal: React.FC<ModalProps> = ({
         <S.ContentContainer>{children}</S.ContentContainer>
         <S.Footer>
           <Button text='아니오' onClick={onClose} color={'WHITE'} />
-          <Button text={buttonName} />
+          <Button text={buttonName} onClick={onConfirm} />
         </S.Footer>
       </S.ModalContainer>
     </>

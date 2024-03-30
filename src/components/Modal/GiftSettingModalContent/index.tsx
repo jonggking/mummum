@@ -59,14 +59,14 @@ const GiftManagementModal = () => {
               onChange={(e) => updateGiftName(index, e.target.value)}
             />
             <S.DeleteIcon
-              height='32px'
-              width='32px'
+              height='28px'
+              width='28px'
               onClick={() => removeGift(index)}
             />
           </S.GiftItem>
         ))}
       </S.GiftList>
-      <S.AddIcon height='50px' width='50px' onClick={addGift} />
+      <S.AddIcon height='45px' width='45px' onClick={addGift} />
     </S.Container>
   );
 };
