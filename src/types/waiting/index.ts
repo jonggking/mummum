@@ -29,7 +29,7 @@ export type MobileWaitingData = AddWaitingUserResult &
   WaitingUserInput & {
     frontWaitingNumber: number;
     waitingTimeMinute: number;
-    callList?: string[];
+    callList: string[];
     createdAt: string;
   };
 

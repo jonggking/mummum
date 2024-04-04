@@ -21,6 +21,7 @@ const Card: React.FC<WaitingProps> = ({
   childrenTablewareCount,
   phoneNumber,
   createdAt,
+  callList,
   // service,
   callCount,
   waitingTimeMinute,
@@ -35,8 +36,9 @@ const Card: React.FC<WaitingProps> = ({
     (state) => state.getAllWaitingList
   );
   const time = getTimeFromCreatedAt(createdAt);
-
   const formattedPhoneNumber = formatPhoneNumber(phoneNumber);
+  const timeFromCallList =
+    callList.length > 0 ? getTimeFromCreatedAt(callList[0]) : null;
 
   const handleCallButtonClick = () => {
     setIsCallModalOpen(true);
@@ -131,12 +133,15 @@ const Card: React.FC<WaitingProps> = ({
       </S.Information>
       <S.ButtonContainer>
         <Button
-          text={`호출 (${callCount}/1)`}
           color='BLUE'
           isLoading={false}
-          disabled={callCount === 1}
+          disabled={callCount >= 1}
           onClick={handleCallButtonClick}
-        />
+        >
+          호출 ({callCount}/1)
+          <br />
+          {timeFromCallList}
+        </Button>
         <Button
           text='착석'
           color='TEAL'
