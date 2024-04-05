@@ -26,6 +26,22 @@ const Card: React.FC<CompletedProps> = ({
   const time = getTimeFromCreatedAt(createdAt);
   const formattedPhoneNumber = formatPhoneNumber(phoneNumber);
 
+  const getWaitingTime = (
+    createdAt: string,
+    callList: string[] | undefined
+  ): number => {
+    if (!callList || callList.length === 0) return 0;
+
+    const startTime = new Date(createdAt);
+    const callTime = new Date(callList[0]);
+    const diffInMilliseconds = callTime.getTime() - startTime.getTime();
+    const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
+
+    return diffInMinutes;
+  };
+
+  const waitingTime = getWaitingTime(createdAt, callList);
+
   return (
     <S.Container>
       <S.Information>
@@ -55,7 +71,7 @@ const Card: React.FC<CompletedProps> = ({
           <S.Time>
             <S.TimeIcon color='gray' /> {time} ~
             {callList && getTimeFromCreatedAt(callList[0])}
-            <S.RedText>({waitingTimeMinute}분 대기)</S.RedText>
+            <S.RedText>({waitingTime}분 대기)</S.RedText>
           </S.Time>
           {/* {service !== null && (
             <S.Service>

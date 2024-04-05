@@ -50,7 +50,7 @@ const Card: React.FC<CancelProps> = ({
             <S.CallIcon color='gray' /> {formattedPhoneNumber}
           </S.Phone>
           <S.Time>
-            <S.TimeIcon color='gray' /> {time} ~ {'끝나는시간'}
+            <S.TimeIcon color='gray' /> {time} ~ {'취소 시간'}
             <S.totalWaitingTime>
               ({waitingTimeMinute}분 대기)
             </S.totalWaitingTime>
