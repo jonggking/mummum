@@ -17,7 +17,6 @@ const Card: React.FC<CompletedProps> = ({
   childrenTablewareCount,
   phoneNumber,
   createdAt,
-  waitingTimeMinute,
   // service,
   // isServiceUsed,
   callCount,

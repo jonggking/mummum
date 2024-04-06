@@ -40,6 +40,23 @@ const Card: React.FC<WaitingProps> = ({
   const timeFromCallList =
     callList.length > 0 ? getTimeFromCreatedAt(callList[0]) : null;
 
+  const getWaitingTime = (
+    createdAt: string,
+    callList: string[] | undefined,
+    waitingTimeMinute: number
+  ): number => {
+    if (!callList || callList.length === 0) return waitingTimeMinute;
+
+    const startTime = new Date(createdAt);
+    const callTime = new Date(callList[0]);
+    const diffInMilliseconds = callTime.getTime() - startTime.getTime();
+    const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
+
+    return diffInMinutes;
+  };
+
+  const waitingTime = getWaitingTime(createdAt, callList, waitingTimeMinute);
+
   const handleCallButtonClick = () => {
     setIsCallModalOpen(true);
   };
@@ -121,7 +138,7 @@ const Card: React.FC<WaitingProps> = ({
           </S.Phone>
           <S.Time>
             <S.TimeIcon color='gray' /> {time}
-            <S.RedText>({waitingTimeMinute}분 대기)</S.RedText>
+            <S.RedText>({waitingTime}분 대기)</S.RedText>
             {/* {isDeferred && <Tag title={'미루기1회'} color={'RED'} />} */}
           </S.Time>
           {/* {service !== null && (
